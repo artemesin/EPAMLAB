@@ -50,8 +50,8 @@ public class GetRectangle {
         this.fourthSector = fourthSector;
     }
 
-    //Searching for human location (In which rectangle he is) (left upper - first, right upper - second, left down - third, left bottom - fourth)
 
+    //Searching for human location (In which rectangle he is) (left upper - first, right upper - second, left down - third, left bottom - fourth)
     public static int getRectangle(long tempHumanPositionX, long tempHumanPositionY) {
 
         if ((tempHumanPositionX < 15 && tempHumanPositionY < 30) && (tempHumanPositionX > 0 && tempHumanPositionY > 15)) {
