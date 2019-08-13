@@ -50,34 +50,39 @@ public class GetRectangle {
         this.fourthSector = fourthSector;
     }
 
-    public static int getRectangle(long tempHumanPositionX, long tempHumanPositionY){
+    //Searching for human location (In which rectangle he is) (left upper - first, right upper - second, left down - third, left bottom - fourth)
 
-        if ((tempHumanPositionX < 15 && tempHumanPositionY < 30) && (tempHumanPositionX > 0 && tempHumanPositionY > 15)){
+    public static int getRectangle(long tempHumanPositionX, long tempHumanPositionY) {
+
+        if ((tempHumanPositionX < 15 && tempHumanPositionY < 30) && (tempHumanPositionX > 0 && tempHumanPositionY > 15)) {
             return 1;
         }
 
-        if ((tempHumanPositionX > 15 && tempHumanPositionY > 15) && (tempHumanPositionX < 30 && tempHumanPositionY < 30)){
+        if ((tempHumanPositionX > 15 && tempHumanPositionY > 15) && (tempHumanPositionX < 30 && tempHumanPositionY < 30)) {
             return 2;
         }
 
-        if ((tempHumanPositionX > 0 && tempHumanPositionY > 0) && (tempHumanPositionX < 15 && tempHumanPositionY < 15)){
+        if ((tempHumanPositionX > 0 && tempHumanPositionY > 0) && (tempHumanPositionX < 15 && tempHumanPositionY < 15)) {
             return 3;
         }
 
-        if ((tempHumanPositionX > 15 && tempHumanPositionY > 0) && (tempHumanPositionX < 30 && tempHumanPositionY < 15)){
+        if ((tempHumanPositionX > 15 && tempHumanPositionY > 0) && (tempHumanPositionX < 30 && tempHumanPositionY < 15)) {
             return 4;
         }
         return 0;
     }
 
-    public static void splitRoomsForRectangles(List<Room> floor){
-        for (Room room: floor) {
-            getRectangle(room.getLeftDownPoint().
+    public static void splitRoomsForRectangles(List<Room> floor) {
+        for (Room room : floor) {
+            Pair<Long, Long> tempCoordinatePair = destBetweenTwoPoints(room.getLeftDownPoint().getKey(), room.getLeftDownPoint().getValue(), room.getRightUpperPoint().getKey(), room.getRightUpperPoint().getValue());
+            getRectangle(tempCoordinatePair.getKey(), tempCoordinatePair.getValue());
+
         }
     }
 
-    public static Pair<Double, Double> destBetweenTwoPoints(long x1, long y1, long x2, long y2){
-        return null;
-                //new Pair<Double, Double>((Math.abs(x1-x2)/2), (Math.abs(y1-y2)/2));
+
+    //Searching for the middle point of room
+    public static Pair<Long, Long> destBetweenTwoPoints(long x1, long y1, long x2, long y2) {
+        return new Pair<>((Math.abs(x1 - x2) / 2), (Math.abs(y1 - y2) / 2));
     }
 }
